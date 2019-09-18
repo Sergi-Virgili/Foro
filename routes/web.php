@@ -15,3 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/foro/temas', 'ThemeController@index');
+
+Route::delete('foro/{theme}', 'ThemeController@destroy');
