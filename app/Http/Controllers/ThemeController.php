@@ -14,7 +14,8 @@ class ThemeController extends Controller
      */
     public function index()
     {
-        //
+        $temas = Theme::all();
+        return view('foro.listaTemas', ['temas'=>$temas]);
     }
 
     /**

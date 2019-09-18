@@ -12,7 +12,9 @@ class ThemeTable extends Seeder
     public function run()
     {
         DB::table('themes')->insert([
-            
+            'title'=>'title1', 
+            'user_id'=> 1,
+            'area_id'=> 1
         ]);
     }
 }
