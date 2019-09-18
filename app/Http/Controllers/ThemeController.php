@@ -25,7 +25,7 @@ class ThemeController extends Controller
      */
     public function create()
     {
-        
+        return view('foro.newTheme');
     }
 
     /**
@@ -82,5 +82,6 @@ class ThemeController extends Controller
     public function destroy(Theme $theme)
     {
         $theme->delete();
+        return redirect('foro/temas');
     }
 }
