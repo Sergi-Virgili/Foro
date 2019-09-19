@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::get('/foro/temas', 'ThemeController@index');
 
+Route::get('/foro/tema/{theme}', 'ThemeController@show');
+
+
 Route::get('/foro/temas/crear', 'ThemeController@create');
 
 Route::delete('/foro/{theme}', 'ThemeController@destroy');

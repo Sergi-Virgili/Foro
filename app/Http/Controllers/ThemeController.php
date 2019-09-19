@@ -32,6 +32,7 @@ class ThemeController extends Controller
      */
     public function create()
     {
+        
         return view('foro.newTheme');
     }
 
@@ -62,7 +63,8 @@ class ThemeController extends Controller
      */
     public function show(Theme $theme)
     {
-        //
+        return view('foro.showTheme',['theme' => $theme]);
+       
     }
 
     /**
