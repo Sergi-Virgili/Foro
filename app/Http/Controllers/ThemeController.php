@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Theme;
 use Illuminate\Http\Request;
+use Auth;
 
 class ThemeController extends Controller
 {
@@ -42,7 +43,15 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $theme = new Theme();
+        $theme->title = $request->title;
+        $theme->area_id = $request->area_id;
+        
+        $theme->user_id = Auth::user()->id;
+
+        $theme->save();
+
+        return redirect('foro/temas');
     }
 
     /**

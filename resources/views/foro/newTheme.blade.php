@@ -2,14 +2,15 @@
 
 @section('content')
     <h1>Nuevo Hilo</h1>
-    <form action="" method="post">
+    <form action="/foro/temas" method="post">
+    {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Título del Hilo</label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="title">
         </div>
         <div class="form-group">
                 <label for="area">Selecciona Area</label>
-                <select class="form-control" id="area">
+                <select class="form-control" id="area" name="area_id">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -38,6 +39,7 @@
         </div>
         
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
+        <p>{{Auth::user()->id}}</p>
     </form>
 
 @endsection
