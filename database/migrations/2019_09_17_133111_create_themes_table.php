@@ -19,6 +19,7 @@ class CreateThemesTable extends Migration
             $table->integer('user_id');
             $table->integer('area_id');
             $table->string('title');
+            $table->text('content');
         });
     }
 

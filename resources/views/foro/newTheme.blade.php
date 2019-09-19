@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
                 <label for="postText">Texto</label>
-                <textarea class="form-control" id="postText" name="postText" rows="3"></textarea>
+                <textarea class="form-control" id="postText" name="content" rows="3"></textarea>
         </div>
         <div class="form-group">
                 <label for="category">Vinculado a Categorías</label>
@@ -39,7 +39,6 @@
         </div>
         
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
-        <p>{{Auth::user()->id}}</p>
     </form>
 
 @endsection

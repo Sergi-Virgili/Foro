@@ -46,7 +46,7 @@ class ThemeController extends Controller
         $theme = new Theme();
         $theme->title = $request->title;
         $theme->area_id = $request->area_id;
-        
+        $theme->content = $request->content;
         $theme->user_id = Auth::user()->id;
 
         $theme->save();
