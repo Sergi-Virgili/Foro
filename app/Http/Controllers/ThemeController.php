@@ -75,7 +75,7 @@ class ThemeController extends Controller
      */
     public function edit(Theme $theme)
     {
-        //
+        return view('foro.updateTheme', compact('theme', $theme));
     }
 
     /**
@@ -87,7 +87,8 @@ class ThemeController extends Controller
      */
     public function update(Request $request, Theme $theme)
     {
-        //
+        $theme->update($request->all());
+        return redirect('/foro/temas');
     }
 
     /**

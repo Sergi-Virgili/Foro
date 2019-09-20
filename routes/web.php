@@ -21,6 +21,9 @@ Route::get('/foro/temas', 'ThemeController@index');
 
 Route::get('/foro/tema/{theme}', 'ThemeController@show');
 
+Route::get('/foro/tema/{theme}/edit', 'ThemeController@edit');
+
+Route::put('/foro/tema/{theme}', 'ThemeController@update');
 
 Route::get('/foro/temas/crear', 'ThemeController@create');
 

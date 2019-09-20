@@ -76,6 +76,7 @@
 
         <main class="py-4">
             <div class="container">
+                    <a href="/foro/temas">volver</a>
             @yield('content')
         </div>
         </main>

@@ -3,6 +3,7 @@
 @section('content')
     
     <h1>{{$theme->title}}</h1>
+    <h2>Area:{{$theme->area_id}}</h2>
     <ul>
         <li>usuario</li>
         <li>Creado el: {{$theme->created_at}} </li>
@@ -11,6 +12,6 @@
     </ul>
     <p>{{$theme->content}}</p>
     <a href="">contestar</a>
-    <a href="">editar</a>
+    <a href="/foro/tema/{{$theme->id}}/edit">editar</a>
            
 @endsection

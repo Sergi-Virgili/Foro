@@ -1,8 +1,12 @@
 @extends('../layouts.app')
 
 @section('content')
-    <h1>Nuevo / Edit Hilo</h1>
-    <form action="/foro/temas" method="post">
+
+<h1>Edit Hilo</h1>
+<form action="/foro/tema/{{$theme->id}}" method="post">
+      
+      @csrf
+      @method('PUT')
     {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Título del Hilo</label>
@@ -10,7 +14,8 @@
         </div>
         <div class="form-group">
                 <label for="area">Selecciona Area</label>
-                <select class="form-control" id="area" name="area_id">
+        {{-- TODO: area seleccionada --}}
+        <select class="form-control" id="area_id" name="area_id" value="{{$theme->area}}">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -20,7 +25,7 @@
         </div>
         <div class="form-group">
                 <label for="postText">Texto</label>
-                <textarea class="form-control" id="postText" name="content" rows="3"></textarea>
+        <textarea class="form-control" id="postText" name="content" rows="3">{{$theme->content}}</textarea>
         </div>
         <div class="form-group">
                 <label for="category">Vinculado a Categorías</label>
