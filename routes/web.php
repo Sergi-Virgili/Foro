@@ -27,6 +27,6 @@ Route::put('/foro/tema/{theme}', 'ThemeController@update');
 
 Route::get('/foro/temas/crear', 'ThemeController@create');
 
-Route::delete('/foro/{theme}', 'ThemeController@destroy');
+Route::delete('/foro/tema/{theme}', 'ThemeController@destroy');
 
 Route::post('/foro/temas', 'ThemeController@store');

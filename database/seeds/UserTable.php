@@ -12,9 +12,11 @@ class UserTable extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
+            'name' => 'root',
+            'email' => 'root@gmail.com',
+            'password' => bcrypt('12345678'),
         ]);
+
+        factory(App\User::class, 10)->create();
     }
 }

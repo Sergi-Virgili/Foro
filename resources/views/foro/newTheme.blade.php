@@ -6,7 +6,7 @@
     {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Título del Hilo</label>
-            <input class="form-control" type="text" name="title" value="{{$theme->title}}">
+            <input class="form-control" type="text" name="title" >
         </div>
         <div class="form-group">
                 <label for="area">Selecciona Area</label>
@@ -37,7 +37,7 @@
                         <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
                       </div>
         </div>
-        
+
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
     </form>
 

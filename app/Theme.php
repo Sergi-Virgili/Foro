@@ -9,4 +9,9 @@ class Theme extends Model
     protected $fillable = [
         'title', 'content', 'area_id'
     ];
+
+    public function responses() {
+
+        return $this->hasMany(Response::class);
+    }
 }

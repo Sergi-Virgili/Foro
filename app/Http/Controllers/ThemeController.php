@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Theme;
+use App\Response;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -15,10 +16,10 @@ class ThemeController extends Controller
      */
 
     public function __construct()
-    { 
+    {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $temas = Theme::all();
@@ -32,7 +33,7 @@ class ThemeController extends Controller
      */
     public function create()
     {
-        
+
         return view('foro.newTheme');
     }
 
@@ -63,8 +64,9 @@ class ThemeController extends Controller
      */
     public function show(Theme $theme)
     {
-        return view('foro.showTheme',['theme' => $theme]);
-       
+        $responses = $theme->responses();
+        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses]);
+
     }
 
     /**
