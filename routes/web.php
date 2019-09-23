@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/foro', 'areaController@index');
+Route::get('/foro/create', 'areaController@create');
+Route::post('/foro', 'areaController@store');
+Route::get('/foro/area/{area}/edit', 'areaController@edit');
+Route::put('/foro/area/{area}', 'areaController@update');
+Route::delete('/foro/{area}', 'areaController@destroy');
+//Route::resource('foro', 'areaController');
