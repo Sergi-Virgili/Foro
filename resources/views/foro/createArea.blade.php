@@ -13,7 +13,7 @@
 </header>
     <div class="areaTitle">Area51</div>
 <main>
-    <form method="POST" action="/foro/{{area}}"  role="form">
+    <form method="POST" action="/foro"  role="form">
 		{{ csrf_field() }}
         <label for="name">Name</label><br>
         <input type="text" name="name" value="" required><br>

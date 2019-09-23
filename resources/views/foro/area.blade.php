@@ -29,8 +29,8 @@
         </form>
         @endforeach
     </ul>
-    <a role="btn" class="btn" href="/foro/createArea" value="new area">
-    <button class="btn btn-success">Create</button><a href="../public/create" class="btn btn-success"></a>
+    <a role="btn" class="btn" href="/foro/create" value="new area">Crear</a>
+    
 </main>
 </body>
 </html>
