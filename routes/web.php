@@ -45,3 +45,9 @@ Route::get('/foro/area/{area}/edit', 'areaController@edit');
 Route::put('/foro/area/{area}', 'areaController@update');
 Route::delete('/foro/{area}', 'areaController@destroy');
 
+// RESPONSES ROUTES
+
+Route::post ('/foro/response', 'ResponseController@store');
+Route::delete ('/foro/response/{response}', 'ResponseController@destroy');
+Route::get ('/foro/response/{response}/edit', 'ResponseController@edit');
+Route::put ('/foro/response/{response}', 'ResponseController@update');

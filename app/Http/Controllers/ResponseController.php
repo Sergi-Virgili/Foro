@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Response;
 use Illuminate\Http\Request;
+use Auth;
 
 class ResponseController extends Controller
 {
@@ -36,6 +37,15 @@ class ResponseController extends Controller
     public function store(Request $request)
     {
         //
+        //dd ($request);  
+        $response = new Response;
+        $response->user_id = Auth::user()->id;
+        $response->content = $request->content;
+        $response->theme_id = $request->theme_id;
+
+        $response->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +90,7 @@ class ResponseController extends Controller
      */
     public function destroy(Response $response)
     {
-        //
+        $response->delete();
+        return redirect()->back();
     }
 }

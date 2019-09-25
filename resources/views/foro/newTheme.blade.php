@@ -1,7 +1,7 @@
 @extends('../layouts.app')
 
 @section('content')
-    <h1>Nuevo / Edit Hilo</h1>
+    <h1>Nuevo Hilo</h1>
     <form action="/foro/temas" method="post">
     {{ csrf_field() }}
         <div class="form-group">
