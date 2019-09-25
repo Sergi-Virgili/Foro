@@ -24,7 +24,7 @@ class areaController extends Controller
     public function show(Area $area){
 
         $themes = $area->themes();
-        return view('foro.showTheme',['area' => $area, 'themes' => $themes]);
+        return view('foro.showArea',['area' => $area]);
 
     }
 

@@ -38,6 +38,7 @@ Route::post('/foro/temas', 'ThemeController@store');
 
 //FORO AREAS ROUTES
 
+Route::get('/foro/{area}/temas', 'areaController@show');
 Route::get('/foro', 'areaController@index');
 Route::get('/foro/create', 'areaController@create');
 Route::post('/foro', 'areaController@store');

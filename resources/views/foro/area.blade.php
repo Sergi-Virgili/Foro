@@ -19,7 +19,7 @@
 <main>
     <ul class="Areas">
         @foreach ($areas as $area)
-        <li>{{$area->name}}</li>
+        <li><a href="/foro/{{$area->id}}/temas">{{$area->name}}</a></li>
         <li>{{$area->description}}</li>
         <form method="GET" action="/foro/area/{{$area->id}}/edit">
             @csrf
