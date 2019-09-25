@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ThemeTable extends Seeder
+class AreaTable extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,7 @@ class ThemeTable extends Seeder
      */
     public function run()
     {
-        DB::table('areas')->insert([
-            'area'=>'area1',
-        ]);
+
+        factory(App\Area::class, 10)->create();
     }
 }
