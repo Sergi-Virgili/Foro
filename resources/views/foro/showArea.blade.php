@@ -1,7 +1,7 @@
 @extends('../layouts.app')
 
 @section('content')
-    <h1>Estos son los temas del foro</h1>
+    <h1>Estos son los temas del area {{$area->name}}</h1>
     <ul>
     @foreach ($area->themes as $tema)
     <li> id : {{$tema->id}},
