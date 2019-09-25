@@ -14,4 +14,9 @@ class Theme extends Model
 
         return $this->hasMany(Response::class);
     }
-}
+
+    public function area() {
+
+        return $this->belongsto(Area::class);
+    }
+ }
