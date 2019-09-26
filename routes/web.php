@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/foro/temas', 'ThemeController@index');
 
-Route::get('/foro/tema/{theme}', 'ThemeController@show');
+Route::get('/foro/tema/{theme}', 'ThemeController@show')->name('theme.show');
 
 Route::get('/foro/tema/{theme}/edit', 'ThemeController@edit');
 
@@ -39,7 +39,7 @@ Route::post('/foro/temas', 'ThemeController@store');
 
 //FORO AREAS ROUTES
 
-Route::get('/foro/{area}/temas', 'areaController@show');
+Route::get('/foro/{area}/temas', 'areaController@show')->name('area.show');
 Route::get('/foro', 'areaController@index');
 Route::get('/foro/create', 'areaController@create');
 Route::post('/foro', 'areaController@store');
@@ -53,3 +53,7 @@ Route::post ('/foro/response', 'ResponseController@store');
 Route::delete ('/foro/response/{response}', 'ResponseController@destroy');
 Route::get ('/foro/response/{response}/edit', 'ResponseController@edit');
 Route::put ('/foro/response/{response}', 'ResponseController@update');
+
+//FINDER ROUTES
+
+Route::any('/foro/finder', 'areaController@search')->name('finder');

@@ -77,6 +77,12 @@
         <main class="py-4">
             <div class="container">
             <a href="{{back()}}">volver</a>
+            <form action="/foro/finder" method="POST">
+            {{ csrf_field() }}
+                @csrf
+                <input type="text" name="query" />
+                <input type="submit" class="btn btn-sm btn-primary" value="Find" />
+            </form>
             @yield('content')
         </div>
         </main>

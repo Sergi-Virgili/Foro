@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Searchable\Search;
 use App\Area;
+use App\Theme;
+use App\Response;
 
 class areaController extends Controller
 {
@@ -16,6 +19,7 @@ class areaController extends Controller
     public function index(){
 
         $areas=Area::all();
+        // $area_name = Area::with('name')->get();
         return view ('foro.area', ['areas' => $areas]);
                     
 
@@ -60,5 +64,16 @@ class areaController extends Controller
     public function destroy(Area $area){
         $area->delete();
         return redirect('/foro');
+    }
+
+    public function search(Request $request)
+    {
+        $searchResults = (new Search())
+            ->registerModel(Area::class, 'name')
+            ->registerModel(Theme::class, 'title')
+            ->registerModel(Response::class, 'content')
+            ->perform($request->input('query'));
+
+        return view('foro.finder', compact('searchResults'));
     }
 }

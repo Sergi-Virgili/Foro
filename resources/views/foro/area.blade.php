@@ -3,9 +3,8 @@
 @section('content')
 <body>
 <header>
-    <div class="title">Forum</div>
+    <div class="title">Areas</div>
 </header>
-    <div class="areaTitle">Area51</div>
 <main>
     <ul class="Areas">
         @foreach ($areas as $area)
