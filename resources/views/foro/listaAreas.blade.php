@@ -11,7 +11,7 @@
         <form action="/foro/tema/{{$tema->id}}" method="POST">
             @csrf
             @method('DELETE')
-            <input type="submit" value="ELIMINAR">
+            <input type="submit" class = "btn btn-danger" value="ELIMINAR">
         </form>
         <form action="/foro/tema/{{$tema->id}}/edit" method="GET">
 
