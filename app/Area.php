@@ -8,5 +8,10 @@ class Area extends Model
 {
     //
     protected $fillable = ['id','name','description'];
+
+    public function themes() {
+
+        return $this->hasMany(Theme::class);
+    }
 }
 

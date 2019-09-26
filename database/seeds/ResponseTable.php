@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ThemeTable extends Seeder
+class ResponseTable extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ThemeTable extends Seeder
      */
     public function run()
     {
-        factory(App\Theme::class, 10)->create();
+        factory(App\Response::class, 10)->create();
     }
 }

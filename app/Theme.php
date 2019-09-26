@@ -18,4 +18,10 @@ class Theme extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
-}
+
+
+    public function area() {
+
+        return $this->belongsto(Area::class);
+    }
+ }
