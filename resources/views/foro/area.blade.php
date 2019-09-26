@@ -6,6 +6,12 @@
     <div class="title">Forum</div>
 </header>
     <div class="areaTitle">Area51</div>
+    <form action="/foro/finder" method="POST">
+    {{ csrf_field() }}
+        @csrf
+        <input type="text" name="query" />
+        <input type="submit" class="btn btn-sm btn-primary" value="Find" />
+    </form>
 <main>
     <ul class="Areas">
         @foreach ($areas as $area)

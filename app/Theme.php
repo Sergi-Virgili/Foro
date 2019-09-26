@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Theme extends Model
+class Theme extends Model implements Searchable
 {
     protected $fillable = [
         'title', 'content', 'area_id'
@@ -19,4 +21,17 @@ class Theme extends Model
 
         return $this->belongsto(Area::class);
     }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('theme.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->title,
+            $url
+         );
+    }
+
+    
  }
