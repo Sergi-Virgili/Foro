@@ -69,8 +69,8 @@ class areaController extends Controller
     public function search(Request $request)
     {
         $searchResults = (new Search())
-            ->registerModel(Area::class, 'name', 'description')
-            ->registerModel(Theme::class, 'title', 'content')
+            ->registerModel(Area::class, 'name',)
+            ->registerModel(Theme::class, 'title',)
             ->registerModel(Response::class, 'content')
             ->perform($request->input('query'));
 
