@@ -34,6 +34,7 @@ class Theme extends Model implements Searchable
         return new SearchResult(
             $this,
             $this->title,
+            $this->content,
             $url
          );
     }
