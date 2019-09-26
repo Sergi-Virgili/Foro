@@ -19278,10 +19278,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function openResponseForm(e) {
-  e.preventDefault();
-  var formResponse = document.getElementById('formResponse');
-  formResponse.classList.toggle('hidden');
+function openResponseForm() {
+  alert(); // e.preventDefault();
+  // let formResponse = document.getElementById('formResponse');
+  // formResponse.classList.toggle('hidden');
 }
 
 /***/ }),

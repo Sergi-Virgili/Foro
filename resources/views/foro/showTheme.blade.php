@@ -11,10 +11,10 @@
 
     
     <p>{{$theme->content}}</p>
-    <a href="">Responder hilo</a>
+    <a href="#" onClick='openResponseForm()'>Responder hilo</a>
     {{-- FROM DE RESPUESTA DEL HILO --}}
 
-    <form id="formResponse" action="/foro/response" method="POST" class="">
+    <form id="formResponse" action="/foro/response" method="POST" class="hidden">
         {{ csrf_field() }}
         <div class="form-group">
                 <label for="content">Texto Respuesta</label>
@@ -37,7 +37,12 @@
             </form>
         </div>
     @endforeach
-
-    
-    
+    <script>
+    function openResponseForm() {
+        
+        
+        let formResponse = document.getElementById('formResponse');
+        formResponse.classList.toggle('hidden');
+    }
+    </script>
 @endsection
