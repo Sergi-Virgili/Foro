@@ -65,6 +65,7 @@ class areaController extends Controller
         $searchResults = (new Search())
             ->registerModel(Area::class, 'name')
             ->registerModel(Theme::class, 'title')
+            ->registerModel(Response::class, 'content')
             ->perform($request->input('query'));
 
         return view('foro.finder', compact('searchResults'));

@@ -17,11 +17,11 @@ class Response extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        $url = route('response.show', $this->id);
+        $url = route('theme.show', $this->theme_id);
 
         return new SearchResult(
             $this,
-            $this->name,
+            $this->content,
             $url
          );
     }
