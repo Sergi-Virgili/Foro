@@ -11,6 +11,6 @@ $factory->define(Response::class, function (Faker $faker) {
     return [
         'theme_id' => Theme::all()->random()->id,
         'user_id' => User::all()->random()->id,
-        'content' => Str::random(5),
+        'content' => $faker->text
     ];  
 });

@@ -11,6 +11,7 @@
 |
 */
 
+
 //FORO AUTH ROUTES USERS
 
 Auth::routes();

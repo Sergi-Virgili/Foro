@@ -6,8 +6,8 @@
     @foreach ($area->themes as $tema)
     <li> id : {{$tema->id}},
     <strong>titulo:</strong> <a href="/foro/tema/{{$tema->id}}">{{$tema->title}} </a>
-        <strong>usuario</strong> {{$tema->user_id}}
-        <strong>area</strong> {{$tema->area_id}}
+        <strong>usuario</strong> {{$tema->user->name}}
+        <strong>area</strong> {{$tema->area->name}}
         <form action="/foro/tema/{{$tema->id}}" method="POST">
             @csrf
             @method('DELETE')
