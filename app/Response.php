@@ -15,6 +15,11 @@ class Response extends Model implements Searchable
         return $this->belongsTo(Theme::class);
     }
 
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function getSearchResult(): SearchResult
     {
         $url = route('theme.show', $this->theme_id);
@@ -24,6 +29,7 @@ class Response extends Model implements Searchable
             $this->content,
             $url
          );
+
     }
 
 }

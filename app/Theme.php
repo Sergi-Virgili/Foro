@@ -17,6 +17,11 @@ class Theme extends Model implements Searchable
         return $this->hasMany(Response::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+
     public function area() {
 
         return $this->belongsto(Area::class);
@@ -29,6 +34,8 @@ class Theme extends Model implements Searchable
         return new SearchResult(
             $this,
             $this->title,
+            $this->content,
+            $this->id,
             $url
          );
     }

@@ -10,6 +10,12 @@ use App\Response;
 
 class areaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
 
         $areas=Area::all();
@@ -63,9 +69,9 @@ class areaController extends Controller
     public function search(Request $request)
     {
         $searchResults = (new Search())
-            ->registerModel(Area::class, 'name')
-            ->registerModel(Theme::class, 'title')
-            ->registerModel(Response::class, 'content')
+            ->registerModel(Area::class, 'name', 'description','id')
+            ->registerModel(Theme::class, 'title', 'content','id')
+            ->registerModel(Response::class, 'content','id')
             ->perform($request->input('query'));
 
         return view('foro.finder', compact('searchResults'));

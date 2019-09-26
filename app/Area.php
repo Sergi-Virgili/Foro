@@ -23,6 +23,8 @@ class Area extends Model implements Searchable
         return new SearchResult(
             $this,
             $this->name,
+            $this->description,
+            $this->id,
             $url
          );
     }
