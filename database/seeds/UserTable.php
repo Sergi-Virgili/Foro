@@ -17,6 +17,6 @@ class UserTable extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        factory(App\User::class, 10)->create();
+        factory(App\User::class, 20)->create();
     }
 }
