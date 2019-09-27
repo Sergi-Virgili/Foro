@@ -54,7 +54,7 @@ class ThemeController extends Controller
 
         $theme->save();
 
-        return redirect('foro/temas');
+        return redirect('foro/'.$theme->area_id.'/temas');
     }
 
     /**
@@ -91,7 +91,7 @@ class ThemeController extends Controller
     public function update(Request $request, Theme $theme)
     {
         $theme->update($request->all());
-        return redirect('/foro/temas');
+        return redirect('/foro/'.$theme->area_id.'/temas');
     }
 
     /**
@@ -103,6 +103,6 @@ class ThemeController extends Controller
     public function destroy(Theme $theme)
     {
         $theme->delete();
-        return redirect('foro/temas');
+        return redirect('/foro/'.$theme->area_id.'/temas');
     }
 }

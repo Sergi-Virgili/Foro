@@ -14,7 +14,7 @@
     <a href="#" onClick='openResponseForm()'>Responder hilo</a>
     {{-- FROM DE RESPUESTA DEL HILO --}}
 
-    <form id="formResponse" class = "container" action="/foro/response" method="POST" class="hidden">
+    <form id="formResponse" class = "container hidden" action="/foro/response" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
                 <label for="content">Texto Respuesta</label>

@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/temas';
+    protected $redirectTo = '/foro';
 
     /**
      * Create a new controller instance.
