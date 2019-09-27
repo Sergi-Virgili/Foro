@@ -24,7 +24,6 @@ class Area extends Model implements Searchable
             $this,
             $this->name,
             $this->description,
-            $this->id,
             $url
          );
     }

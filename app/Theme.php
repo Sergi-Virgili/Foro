@@ -35,7 +35,6 @@ class Theme extends Model implements Searchable
             $this,
             $this->title,
             $this->content,
-            $this->id,
             $url
          );
     }
