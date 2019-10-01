@@ -79,7 +79,9 @@ class ThemeController extends Controller
      */
     public function edit(Theme $theme)
     {
-        return view('foro.updateTheme', compact('theme', $theme));
+        $areas = Area::all();
+        return view('foro.updateTheme', ['theme' => $theme,
+                                        'areas' => $areas]);
     }
 
     /**
