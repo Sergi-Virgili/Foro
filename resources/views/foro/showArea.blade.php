@@ -27,5 +27,7 @@
     @endforeach
     
     <a href="/foro/temas/crear">ABRE UN HILO NUEVO</a>
+    
+    
 
 @endsection

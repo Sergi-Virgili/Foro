@@ -36,6 +36,12 @@
                 @method('DELETE') 
                 <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
             </form>
+             <form action="/foro/response/{{$response->id}}" method="post">
+                @csrf
+                {{-- @method('PUT')  --}}
+                
+                <input type="submit" value="EDITAR" class = "btn btn-outline-success mt-4">
+            </form>
             </div>
         </div>
     @endforeach

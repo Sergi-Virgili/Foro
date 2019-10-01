@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Theme;
 use App\Response;
 use App\User;
+use App\Area;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -34,8 +35,8 @@ class ThemeController extends Controller
      */
     public function create()
     {
-
-        return view('foro.newTheme');
+        $areas = Area::all();
+        return view('foro.newTheme', ['areas' => $areas]);
     }
 
     /**

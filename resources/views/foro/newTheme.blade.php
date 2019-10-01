@@ -6,21 +6,25 @@
     {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Título del Hilo</label>
-            <input class="form-control" type="text" name="title" >
+            <input class="form-control" type="text" name="title" required >
         </div>
         <div class="form-group">
                 <label for="area">Selecciona Area</label>
                 <select class="form-control" id="area" name="area_id">
-                  <option>1</option>
+                  {{-- <option>1</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
-                  <option>5</option>
+                  <option>5</option> --}}
+                  @foreach ($areas as $area)
+                    <option>{{$area->name}}</option>
+                  @endforeach
+
                 </select>
         </div>
         <div class="form-group">
                 <label for="postText">Texto</label>
-                <textarea class="form-control" id="postText" name="content" rows="3"></textarea>
+                <textarea class="form-control" id="postText" name="content" rows="3" required></textarea>
         </div>
         <div class="form-group">
                 <label for="category">Vinculado a Categorías</label>

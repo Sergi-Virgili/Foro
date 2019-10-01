@@ -51,7 +51,9 @@ Route::delete('/foro/{area}', 'areaController@destroy');
 
 Route::post ('/foro/response', 'ResponseController@store');
 Route::delete ('/foro/response/{response}', 'ResponseController@destroy');
-Route::get ('/foro/response/{response}/edit', 'ResponseController@edit');
+
+// TODO: EDIT RESPONSES
+Route::get ('/foro/tema/{response}/edit', 'ResponseController@edit');
 Route::put ('/foro/response/{response}', 'ResponseController@update');
 
 //FINDER ROUTES

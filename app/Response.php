@@ -10,6 +10,9 @@ use App\Theme;
 class Response extends Model implements Searchable
 {
 
+    protected $fillable = [
+        'user_id', 'theme_id', 'content'
+    ];
     public function theme() {
 
         return $this->belongsTo(Theme::class);
