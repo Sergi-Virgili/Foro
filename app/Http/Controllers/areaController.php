@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
+use App\User;
 use App\Area;
 use App\Theme;
 use App\Response;
@@ -75,5 +76,10 @@ class areaController extends Controller
             ->perform($request->input('query'));
 
         return view('foro.finder', compact('searchResults'));
+    }
+
+    public function foroUser (User $user) {
+
+        return view('foro.foroUser', ['user' => $user]);
     }
 }

@@ -9,6 +9,7 @@
     <strong>titulo:</strong> <a href="/foro/tema/{{$tema->id}}">{{$tema->title}} </a>
         <strong>usuario</strong> {{$tema->user->name}}
         <strong>area</strong> {{$tema->area->name}}
+        <p>Respuestas: {{$tema->responses->Count()}}</p>
     </div>
     <div class="container">
         <form action="/foro/tema/{{$tema->id}}" method="POST">

@@ -52,10 +52,15 @@ Route::delete('/foro/{area}', 'areaController@destroy');
 Route::post ('/foro/response', 'ResponseController@store');
 Route::delete ('/foro/response/{response}', 'ResponseController@destroy');
 
-// TODO: EDIT RESPONSES
+
 Route::get ('/foro/tema/{response}/edit', 'ResponseController@edit');
 Route::put ('/foro/response/{response}', 'ResponseController@update');
 
 //FINDER ROUTES
 
 Route::any('/foro/finder', 'areaController@search')->name('finder');
+
+//FORO USER ROUTES
+
+    //TODO MIS HILOS o HILOS DE USUALIO 
+Route::get('/foro/user/{user}', 'areaController@foroUser');
