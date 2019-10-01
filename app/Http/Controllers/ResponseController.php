@@ -85,7 +85,8 @@ class ResponseController extends Controller
      */
     public function update(Request $request, Response $response)
     {
-        //
+        $response->update($request->all());
+        return redirect('/foro/tema/' . $response->theme->id);
     }
 
     /**
