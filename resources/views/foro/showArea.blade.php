@@ -7,7 +7,7 @@
     <div class="card p-4 mb-4"> 
     <div class="container mb-4">id : {{$tema->id}},
     <strong>titulo:</strong> <a href="/foro/tema/{{$tema->id}}">{{$tema->title}} </a>
-        <strong>usuario</strong> {{$tema->user->name}}
+        <strong>usuario</strong> <a href="/foro/user/{{$tema->user->id}}">{{$tema->user->name}}</a>
         <strong>area</strong> {{$tema->area->name}}
         <p>Respuestas: {{$tema->responses->Count()}}</p>
     </div>
