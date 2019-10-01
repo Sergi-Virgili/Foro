@@ -16,9 +16,12 @@
                 <label for="area">Selecciona Area</label>
         {{-- TODO: area seleccionada --}}
         <select class="form-control" id="area_id" name="area_id" value="{{$theme->area->id}}">
-                {{-- @foreach ($theme->area as $area)
-                        <option>{{$area->name}}</option>
-                @endforeach --}}
+                @foreach ($areas as $area)
+                        <option value="{{$area->id}}" 
+                                @if ($area->id == $theme->area->id) selected @endif>
+                                {{$area->name}}
+                        </option>
+                @endforeach
                        
                   
                 </select>
