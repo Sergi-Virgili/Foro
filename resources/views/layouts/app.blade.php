@@ -77,6 +77,7 @@
         <main class="py-4">
             <div class="container">
             <a href="{{back()}}">volver</a>
+            <a href="">Mis Hilos</a>
             <form action="/foro/finder" method="POST">
             {{ csrf_field() }}
                 @csrf

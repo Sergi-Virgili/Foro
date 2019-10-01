@@ -11,6 +11,7 @@
         <strong>area</strong> {{$tema->area->name}}
         <p>Respuestas: {{$tema->responses->Count()}}</p>
     </div>
+    @if (Auth::user())
     <div class="container">
         <form action="/foro/tema/{{$tema->id}}" method="POST">
             @csrf
@@ -23,6 +24,7 @@
             <input type="submit" class = "btn btn-outline-primary btn-sm" value="EDITAR">
         </form>
     </div>
+    @endif
     </div>
 
     @endforeach

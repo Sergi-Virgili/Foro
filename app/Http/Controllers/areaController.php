@@ -14,7 +14,7 @@ class areaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show','foroUser','search ');
+        $this->middleware('auth')->except('index','show','foroUser','search');
     }
     
     public function index(){
