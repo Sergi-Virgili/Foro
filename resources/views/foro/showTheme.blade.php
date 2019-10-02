@@ -60,6 +60,21 @@
                         </a>
                         <input type="submit" value="OK" class = "btn btn-outline-success mt-4">
                     </form>
+                    <form method="POST" action="/foro/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    @csrf
+                        <div class="form-group">
+                            <label class="control-label">Nuevo Archivo</label>
+                            <div class="">
+                                <input type="file" class="form-control" name="file" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
              <form action="/foro/response/{{$response->id}}" method="post">

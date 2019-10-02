@@ -24,17 +24,11 @@ Route::get('/', function () {
 //FORO THEMES ROUTES
 
 Route::get('/foro/temas', 'ThemeController@index');
-
 Route::get('/foro/tema/{theme}', 'ThemeController@show')->name('theme.show');
-
 Route::get('/foro/tema/{theme}/edit', 'ThemeController@edit');
-
 Route::put('/foro/tema/{theme}', 'ThemeController@update');
-
 Route::get('/foro/temas/crear', 'ThemeController@create');
-
 Route::delete('/foro/tema/{theme}', 'ThemeController@destroy');
-
 Route::post('/foro/temas', 'ThemeController@store');
 
 //FORO AREAS ROUTES
@@ -51,8 +45,6 @@ Route::delete('/foro/{area}', 'areaController@destroy');
 
 Route::post ('/foro/response', 'ResponseController@store');
 Route::delete ('/foro/response/{response}', 'ResponseController@destroy');
-
-
 Route::get ('/foro/tema/{response}/edit', 'ResponseController@edit');
 Route::put ('/foro/response/{response}', 'ResponseController@update');
 
@@ -64,3 +56,19 @@ Route::any('/foro/finder', 'areaController@search')->name('finder');
 
     //TODO MIS HILOS o HILOS DE USUALIO 
 Route::get('/foro/user/{user}', 'areaController@foroUser');
+
+//FORO UPLOADER ROUTES
+
+Route::get('/foro/tema/{response}', 'StorageController@index');
+Route::post('foro/storage/create', 'StorageController@save');
+Route::get('foro/storage/{archivo}', function ($archivo) {
+    $public_path = storage_path();
+    $url =$public_path.'/foro/storage/'.$archivo;
+    if (Storage::exists($archivo))
+    {
+        return response()->download($url);
+    }
+    //si no se encuentra lanzamos un error 404.
+    abort(404);
+ 
+});
