@@ -17,7 +17,7 @@
                   <option>4</option>
                   <option>5</option> --}}
                   @foreach ($areas as $area)
-                    <option>{{$area->name}}</option>
+                    <option value="{{$area->id}}">{{$area->name}}</option>
                   @endforeach
 
                 </select>

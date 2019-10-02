@@ -62,5 +62,5 @@ Route::any('/foro/finder', 'areaController@search')->name('finder');
 
 //FORO USER ROUTES
 
-    //TODO MIS HILOS o HILOS DE USUALIO 
+    //TODO: MIS HILOS o HILOS DE USUARIO Y COLABORA 
 Route::get('/foro/user/{user}', 'areaController@foroUser');
