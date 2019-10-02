@@ -59,7 +59,6 @@ Route::get('/foro/user/{user}', 'areaController@foroUser');
 
 //FORO UPLOADER ROUTES
 
-Route::get('/foro/tema/{response}', 'StorageController@index');
 Route::post('foro/storage/create', 'StorageController@save');
 Route::get('foro/storage/{archivo}', function ($archivo) {
     $public_path = storage_path();
