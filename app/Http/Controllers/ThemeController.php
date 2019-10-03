@@ -25,6 +25,7 @@ class ThemeController extends Controller
     public function index()
     {
         $temas = Theme::all();
+        
         return view('foro.listaTemas', ['temas'=>$temas]);
     }
 
@@ -67,7 +68,7 @@ class ThemeController extends Controller
     public function show(Theme $theme)
     {
         $responses = $theme->responses();
-        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses]);
+        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses ]);
 
     }
 
