@@ -19,15 +19,20 @@
         <a href="#" onClick="toggleForm(['formResponse'])">Responder hilo</a>
         {{-- FROM DE RESPUESTA DEL HILO --}}
         
-        <form id="formResponse" class = "container hidden" action="/foro/response" method="POST">
+        <form id="formResponse" class = "container hidden" action="/foro/response" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
                     <label for="content">Texto Respuesta</label>
                     <textarea class="form-control" required id="content" name="content" rows="3"></textarea>
             </div>
+            <div class="form-group">
+                <label class="control-label">Nuevo Archivo</label>
+                <div class="">
+                    <input type="file" class="form-control" name="file" >
+                </div>
+            </div>
             <input type="submit" class="btn btn-outline-success" value="Responder">
             <input type="hidden" name="theme_id" value= {{$theme->id}}>
-
         </form>
     @endif
     </div>

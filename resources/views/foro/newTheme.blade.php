@@ -41,8 +41,8 @@
                         <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
                       </div>
         </div>
-
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
     </form>
+    
 
 @endsection

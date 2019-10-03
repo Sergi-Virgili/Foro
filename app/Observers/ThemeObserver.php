@@ -10,4 +10,9 @@ class ThemeObserver
     {
         $theme->responses()->delete();
     }
+
+    public function created(Theme $theme)
+    {
+        $theme->file();
+    }
 }

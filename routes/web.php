@@ -59,11 +59,11 @@ Route::get('/foro/user/{user}', 'areaController@foroUser');
 
 //FORO UPLOADER ROUTES
 
-Route::post('foro/storage/create', 'StorageController@save');
+Route::post('foro/storage/create', 'FileController@store');
 Route::get('foro/storage/{archivo}', function ($archivo) {
     $public_path = storage_path();
     $url =$public_path.'/foro/storage/'.$archivo;
-    if (Storage::exists($archivo))
+    if (File::exists($archivo))
     {
         return response()->download($url);
     }

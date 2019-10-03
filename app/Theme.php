@@ -21,10 +21,13 @@ class Theme extends Model implements Searchable
         return $this->belongsTo(User::class);
     }
 
-
     public function area() {
 
         return $this->belongsto(Area::class);
+    }
+    public function file() {
+
+        return $this->hasMany(File::class);
     }
 
     public function getSearchResult(): SearchResult
