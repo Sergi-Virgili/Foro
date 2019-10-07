@@ -76,7 +76,7 @@
 
         <main class="py-4">
             <div class="container">
-            <a href="{{back()}}">volver</a>
+            <form><input type="button" value="Return to previous page" onClick="javascript:history.go(-1)"></form>
             <a href="">Mis Hilos</a>
             <form action="/foro/finder" method="POST">
             {{ csrf_field() }}

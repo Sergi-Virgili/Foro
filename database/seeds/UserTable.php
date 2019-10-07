@@ -19,4 +19,4 @@ class UserTable extends Seeder
 
         factory(App\User::class, 20)->create();
     }
-}
+}   

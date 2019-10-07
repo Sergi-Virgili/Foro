@@ -106,7 +106,9 @@ class ThemeController extends Controller
      */
     public function destroy(Theme $theme)
     {
+        if (auth::user == $id){
         $theme->delete();
         return redirect('/foro/'.$theme->area_id.'/temas');
     }
+}
 }

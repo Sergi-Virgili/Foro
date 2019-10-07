@@ -20,10 +20,6 @@
             } 
 
             return $text;
-               /* elseif(preg_match($$reg_Youtube, $text, $url)){
-                    return preg_replace($reg_Youtube, "<iframe width=auto height=315 src=".$url[0]." frameborder=0 allow=accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen>".$url[0]."</iframe>", $text);
-            };*/
-
 }
 ?>
     <?php echo findLinkInText($theme->content) ?>
@@ -54,7 +50,7 @@
              <div id="response_content-{{$response->id}}"><?php echo findLinkInText($response->content)?></div>
 
              @if (Auth::user())
-                 
+             @if(Auth::id() == $response->user_id)
              <div id = "response_edit_form-{{$response->id}}" class="hidden">
                     <form action="/foro/response/{{$response->id}}" method="post">
                         @csrf
@@ -64,6 +60,7 @@
                              
                         <textarea class="form-control" required id="content" name="content" rows="3">{{$response->content}}
                         </textarea>
+                        
                         </div>
                         <a id="response_cancel_button-{{$response->id}}" onclick="toggleForm(['response_edit_form-{{$response->id}}',
                                 'response_content-{{$response->id}}',
@@ -76,12 +73,15 @@
                         <input type="submit" value="OK" class = "btn btn-outline-success mt-4">
                     </form>
                 </div>
-
+               
              <form action="/foro/response/{{$response->id}}" method="post">
                 @csrf
+                
                 @method('DELETE') 
                 <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                
             </form>
+          
             <button id="response_edit_button-{{$response->id}}" onclick="toggleForm(['response_edit_form-{{$response->id}}',
                 'response_content-{{$response->id}}',
                 'response_edit_button-{{$response->id}}'])" 
@@ -89,7 +89,7 @@
                 EDITAR
             </button>
             @endif
-            
+            @endif
             </div>
         </div>
     @endforeach

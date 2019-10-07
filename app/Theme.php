@@ -37,6 +37,4 @@ class Theme extends Model implements Searchable
             $url
          );
     }
-
-    
  }
