@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AreaTable::class);
         $this->call(ThemeTable::class);
         $this->call(ResponseTable::class);
+        $this->call(ForoPermissionTable::class);
     }
 }

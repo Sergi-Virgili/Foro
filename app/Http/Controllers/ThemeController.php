@@ -108,4 +108,15 @@ class ThemeController extends Controller
         $theme->delete();
         return redirect('/foro/'.$theme->area_id.'/temas');
     }
+
+    public function foroUser (User $user) {
+
+        $responses = Response::getFromUser($user);
+        $themes = Theme::getFromUser($user);
+        //$themes = Theme::where('user_id' , $user->id)->get();
+        return view('foro.foroUser', ['themes' => $themes,
+                                    'user' => $user,
+                                    'responses' => $responses]);
+        
+    }
 }

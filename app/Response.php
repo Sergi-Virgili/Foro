@@ -35,4 +35,9 @@ class Response extends Model implements Searchable
 
     }
 
+    public static function getFromUser($user){
+        
+        return Response::where('user_id' , $user->id)->get();
+    }
+
 }

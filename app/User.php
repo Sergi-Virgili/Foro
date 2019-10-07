@@ -37,13 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function themes () {
+    public function foroPermissions () {
         
-        return $this->hasMany(Theme::class);
+        return $this->belongToMany(ForoPermission::class);
     }
 
-    public function responses() {
+    // public function responses() {
 
-        return $this->hasMany(Response::class);
-    }
+    //     return $this->hasMany(Response::class);
+    // }
 }

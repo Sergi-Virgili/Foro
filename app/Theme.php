@@ -38,5 +38,12 @@ class Theme extends Model implements Searchable
          );
     }
 
+    public static function getFromUser($user){
+        
+        //TODO : return all themes from user id.
+
+        return Theme::where('user_id' , $user->id)->get();
+    }
+
     
  }

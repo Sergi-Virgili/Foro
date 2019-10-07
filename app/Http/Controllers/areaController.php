@@ -78,8 +78,5 @@ class areaController extends Controller
         return view('foro.finder', compact('searchResults'));
     }
 
-    public function foroUser (User $user) {
-
-        return view('foro.foroUser', ['user' => $user]);
-    }
+  
 }
