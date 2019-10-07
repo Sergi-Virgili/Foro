@@ -66,4 +66,9 @@ Route::any('/foro/finder', 'areaController@search')->name('finder');
 Route::get('/foro/user/{user}', 'themeController@foroUser');
 
 
+// FORO ADMINISTRATION ROUTES
 Route::get('/foro/admin', 'ForoPermissionController@index');
+
+Route::delete('/foro/admin', 'ForoPermissionController@destroy');
+
+Route::post('/foro/admin', 'ForoPermissionController@store');

@@ -13,13 +13,24 @@ class ForoPermissionController extends Controller
         // TODO: ALL 
         $users = User::all();
         $permissions = ForoPermission::all();
-        $userPermissions = $this->permissionUser();
+       // $userPermissions = $this->permissionUser();
         return view('foro.admin', ['permissions' => $permissions,
                                     'users' => $users] );
     }
 
-    public function permissionUser($user) {
+    public function permissionUser(User $user) {
         $permissions = ForoPermission::getFromUser($user);
         
+    }
+
+    public function destroy(User $user) 
+    {
+
+        return Redirect::back()->with('msg', 'Moderador Borrado');
+    }
+
+    public function store(Request $request)
+    {
+
     }
 }

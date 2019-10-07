@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="/foro/">
                     Factoria F5 - Foro
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -76,8 +76,8 @@
 
         <main class="py-4">
             <div class="container">
-            <a href="{{back()}}">volver</a>
-            <a href="">Mis Hilos</a>
+            <form><input type="button" value="Return to previous page" onClick="javascript:history.go(-1)"></form>
+            <a href="/foro/user/{{Auth::user()->id}}">Mis Hilos</a>
             <form action="/foro/finder" method="POST">
             {{ csrf_field() }}
                 @csrf

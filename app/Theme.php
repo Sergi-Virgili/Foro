@@ -38,6 +38,7 @@ class Theme extends Model implements Searchable
          );
     }
 
+
     public static function getFromUser($user){
         
         //TODO : return all themes from user id.
@@ -46,4 +47,5 @@ class Theme extends Model implements Searchable
     }
 
     
+
  }

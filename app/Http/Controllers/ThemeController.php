@@ -25,6 +25,7 @@ class ThemeController extends Controller
     public function index()
     {
         $temas = Theme::all();
+        
         return view('foro.listaTemas', ['temas'=>$temas]);
     }
 
@@ -67,7 +68,7 @@ class ThemeController extends Controller
     public function show(Theme $theme)
     {
         $responses = $theme->responses();
-        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses]);
+        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses ]);
 
     }
 
@@ -105,8 +106,10 @@ class ThemeController extends Controller
      */
     public function destroy(Theme $theme)
     {
+        if (auth::user == $id){
         $theme->delete();
         return redirect('/foro/'.$theme->area_id.'/temas');
+        }
     }
 
     public function foroUser (User $user) {
@@ -120,3 +123,4 @@ class ThemeController extends Controller
         
     }
 }
+

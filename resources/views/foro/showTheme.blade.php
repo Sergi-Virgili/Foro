@@ -11,8 +11,18 @@
     <p>Creado el: {{$theme->created_at}} </p>
     <p>Modificado el: {{$theme->updated_at}} </p>
 
-    
-    <p>{{$theme->content}}</p>
+    <?php    
+    function findLinkInText($text) {
+        $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+
+            if(preg_match($reg_exUrl, $text, $url)) {
+                return preg_replace($reg_exUrl, "<a href=".$url[0]." target=_blank>".$url[0]."</a> ", $text);
+            } 
+
+            return $text;
+}
+?>
+    <?php echo findLinkInText($theme->content) ?>
 
     @if (Auth::user())
 
@@ -37,18 +47,20 @@
         <div class="card p-4 m-2">
             <div class="container">
             <a href="/foro/user/{{$response->user->id}}"><strong>{{$response->user->name}}</strong></a>
-             <div id="response_content-{{$response->id}}">{{$response->content}}</div>
+             <div id="response_content-{{$response->id}}"><?php echo findLinkInText($response->content)?></div>
 
              @if (Auth::user())
-                 
+             @if(Auth::id() == $response->user_id)
              <div id = "response_edit_form-{{$response->id}}" class="hidden">
                     <form action="/foro/response/{{$response->id}}" method="post">
                         @csrf
                         @method('PUT') 
                         
                         <div class="form-group">
-                            
-                        <textarea class="form-control" required id="content" name="content" rows="3">{{$response->content}}</textarea>
+                             
+                        <textarea class="form-control" required id="content" name="content" rows="3">{{$response->content}}
+                        </textarea>
+                        
                         </div>
                         <a id="response_cancel_button-{{$response->id}}" onclick="toggleForm(['response_edit_form-{{$response->id}}',
                                 'response_content-{{$response->id}}',
@@ -61,12 +73,15 @@
                         <input type="submit" value="OK" class = "btn btn-outline-success mt-4">
                     </form>
                 </div>
-
+               
              <form action="/foro/response/{{$response->id}}" method="post">
                 @csrf
+                
                 @method('DELETE') 
                 <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                
             </form>
+          
             <button id="response_edit_button-{{$response->id}}" onclick="toggleForm(['response_edit_form-{{$response->id}}',
                 'response_content-{{$response->id}}',
                 'response_edit_button-{{$response->id}}'])" 
@@ -74,7 +89,7 @@
                 EDITAR
             </button>
             @endif
-            
+            @endif
             </div>
         </div>
     @endforeach
