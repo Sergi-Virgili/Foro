@@ -3,8 +3,7 @@
 @section('content')
 {{$theme->area->name}}
 <h1>Edit Hilo</h1>
-<form action="/foro/tema/{{$theme->id}}" method="post">
-      
+<form action="/foro/tema/{{$theme->id}}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
       @csrf
       @method('PUT')
     {{ csrf_field() }}
@@ -45,7 +44,34 @@
                         <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
                       </div>
         </div>
-        
+        @foreach ($theme->files as $file)
+                <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+                <form action="/foro/file/{{$file->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                </form>
+        @endforeach
+        @foreach ($theme->images as $image)
+                <img src="{{url('foro/storage',$image->image_name)}}">
+                <form action="/foro/image/{{$image->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                </form>
+        @endforeach
+        <div class="form-group">
+            <label class="col-md-4 control-label">Nuevo Archivo</label>
+            <div class="col-md-6">
+            <input type="file" class="form-control" name="file" >
+            </div>
+        </div>
+        <div class="form-group">
+                <label class="control-label">Nueva Imagen</label>
+                <div class="">
+                <input type="file" class="form-control" name="image" >
+                </div>
+        </div>
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
     </form>
 
