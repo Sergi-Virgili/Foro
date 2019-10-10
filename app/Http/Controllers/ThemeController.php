@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Theme;
-use App\Response;
-use App\User;
 use App\Area;
+use App\File;
+use App\Image;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -53,8 +53,15 @@ class ThemeController extends Controller
         $theme->area_id = $request->area_id;
         $theme->content = $request->content;
         $theme->user_id = Auth::user()->id;
-
         $theme->save();
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageTheme($request, $theme->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataTheme($request, $theme->id);
+        }
 
         return redirect('foro/'.$theme->area_id.'/temas');
     }
@@ -94,7 +101,16 @@ class ThemeController extends Controller
      */
     public function update(Request $request, Theme $theme)
     {
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageTheme($request, $theme->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataTheme($request, $theme->id);
+        }
         $theme->update($request->all());
+        
         return redirect('/foro/'.$theme->area_id.'/temas');
     }
 

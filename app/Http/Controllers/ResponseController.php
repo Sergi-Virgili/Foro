@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
+use App\Image;
 use App\Response;
 use Illuminate\Http\Request;
 use Auth;
@@ -48,9 +50,15 @@ class ResponseController extends Controller
         $response->user_id = Auth::user()->id;
         $response->content = $request->content;
         $response->theme_id = $request->theme_id;
-
         $response->save();
-
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageResponse($request, $response->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataResponse($request, $response->id);
+        }
         return redirect()->back();
     }
 
@@ -85,6 +93,14 @@ class ResponseController extends Controller
      */
     public function update(Request $request, Response $response)
     {
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageResponse($request, $response->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataResponse($request, $response->id);
+        }
         $response->update($request->all());
         return redirect('/foro/tema/' . $response->theme->id);
     }
