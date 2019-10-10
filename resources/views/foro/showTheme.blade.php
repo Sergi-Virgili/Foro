@@ -23,8 +23,6 @@
 }
 ?>
     <?php echo findLinkInText($theme->content) ?>
-    
-    <p>{{$theme->content}}</p>
     @foreach ($theme->images as $image)
         <img src="{{url('/foro/storage',$image->image_name)}}">
         <form action="/foro/image/{{$image->id}}" method="post">
@@ -79,21 +77,10 @@
              <div id="response_content-{{$response->id}}"><?php echo findLinkInText($response->content)?></div>
              @foreach ($response->images as $image)
                 <img src="{{url('/foro/storage',$image->image_name)}}">
-                <form action="/foro/image/{{$image->id}}" method="post">
-                    @csrf
-                    @method('DELETE') 
-                    <input type="submit" value="ELIMINAR IMAGEN" class = "btn btn-outline-danger mt-4">
-                </form>
              @endforeach
              @foreach ($response->files as $file)
                 <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
-                <form action="/foro/file/{{$file->id}}" method="post">
-                    @csrf
-                    @method('DELETE') 
-                    <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
-                </form>
-             @endforeach
-
+            @endforeach
              @if (Auth::user())
              @if(Auth::id() == $response->user_id)
              <div id = "response_edit_form-{{$response->id}}" class="hidden">
@@ -102,6 +89,20 @@
                         @method('PUT') 
                         <div class="form-group">
                         <textarea class="form-control" required id="content" name="content" rows="3">{{$response->content}}</textarea>
+                        @foreach ($response->images as $image)                
+                            <form action="/foro/image/{{$image->id}}" method="post">
+                                @csrf
+                                @method('DELETE') 
+                                <input type="submit" value="ELIMINAR IMAGEN" class = "btn btn-outline-danger mt-4">
+                            </form>
+                        @endforeach
+                        @foreach ($response->files as $file)
+                        <form action="/foro/file/{{$file->id}}" method="post">
+                            @csrf
+                            @method('DELETE') 
+                            <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
+                        </form>
+                        @endforeach
                         <div class="form-group">
                             <label class="control-label">Nuevo Archivo</label>
                             <div class="">
