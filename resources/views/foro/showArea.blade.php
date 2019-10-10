@@ -10,6 +10,14 @@
         <strong>usuario</strong> <a href="/foro/user/{{$tema->user->id}}">{{$tema->user->name}}</a>
         <strong>area</strong> {{$tema->area->name}}
         <p>Respuestas: {{$tema->responses->Count()}}</p>
+        @foreach ($tema->files as $file)
+            <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+                <form action="/foro/file/{{$file->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                    <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
+                </form>
+        @endforeach
     </div>
     @if (Auth::user())
     <div class="container">

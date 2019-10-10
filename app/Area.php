@@ -16,6 +16,11 @@ class Area extends Model implements Searchable
         return $this->hasMany(Theme::class);
     }
 
+    public function files(){
+
+        return $this->hasMany(Files::class);
+    }
+
     public function getSearchResult(): SearchResult
     {
         $url = route('area.show', $this->id);
