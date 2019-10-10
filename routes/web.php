@@ -66,9 +66,6 @@ Route::delete('/foro/admin/{user}/delete', 'ForoPermissionController@destroy');
 Route::post('/foro/admin', 'ForoPermissionController@addModerator');
 
 
-    //TODO MIS HILOS o HILOS DE USUALIO 
-Route::get('/foro/user/{user}', 'areaController@foroUser');
-
 //FORO UPLOADER ROUTES
 
 Route::get('foro/storage/{file}', 'FileController@downloadFile');

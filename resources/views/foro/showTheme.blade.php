@@ -89,20 +89,6 @@
                         @method('PUT') 
                         <div class="form-group">
                         <textarea class="form-control" required id="content" name="content" rows="3">{{$response->content}}</textarea>
-                        @foreach ($response->images as $image)                
-                            <form action="/foro/image/{{$image->id}}" method="post">
-                                @csrf
-                                @method('DELETE') 
-                                <input type="submit" value="ELIMINAR IMAGEN" class = "btn btn-outline-danger mt-4">
-                            </form>
-                        @endforeach
-                        @foreach ($response->files as $file)
-                        <form action="/foro/file/{{$file->id}}" method="post">
-                            @csrf
-                            @method('DELETE') 
-                            <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
-                        </form>
-                        @endforeach
                         <div class="form-group">
                             <label class="control-label">Nuevo Archivo</label>
                             <div class="">
@@ -126,6 +112,20 @@
                         </a>
                         <input type="submit" value="OK" class = "btn btn-outline-success mt-4">
                     </form>
+                    @foreach ($response->files as $file)
+                    <form action="/foro/file/{{$file->id}}" method="post">
+                        @csrf
+                        @method('DELETE') 
+                        <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
+                    </form>
+                    @endforeach
+                    @foreach ($response->images as $image)                
+                        <form action="/foro/image/{{$image->id}}" method="post">
+                            @csrf
+                            @method('DELETE') 
+                            <input type="submit" value="ELIMINAR IMAGEN" class = "btn btn-outline-danger mt-4">
+                        </form>
+                    @endforeach
                 </div>
                
              <form action="/foro/response/{{$response->id}}" method="post">
