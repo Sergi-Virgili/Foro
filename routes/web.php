@@ -59,15 +59,9 @@ Route::get('/foro/user/{user}', 'areaController@foroUser');
 
 //FORO UPLOADER ROUTES
 
-Route::post('foro/storage/create', 'FileController@store');
-Route::get('foro/storage/{archivo}', function ($archivo) {
-    $public_path = storage_path();
-    $url =$public_path.'/foro/storage/'.$archivo;
-    if (File::exists($archivo))
-    {
-        return response()->download($url);
-    }
-    //si no se encuentra lanzamos un error 404.
-    abort(404);
- 
-});
+Route::get('foro/storage/{file}', 'FileController@downloadFile');
+Route::delete ('/foro/file/{file}', 'FileController@destroy');
+
+//FORO IMAGES ROUTES
+
+Route::delete('foro/image/{image}', 'ImageController@destroy');

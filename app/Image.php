@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Theme;
 use App\Response;
 
-class File extends Model
+class Image extends Model
 {
     protected $fillable = [
         'path','theme_id','response_id','id'
@@ -32,30 +32,30 @@ class File extends Model
         return $this->belongsto(Area::class);
     }
 
-    public function storeDataResponse($request, $id){
+    public function storeImageResponse($request, $id){
 
         DB::beginTransaction();
         try{
             //save image
 
-        $newfile = new File();
+        $newimage = new Image();
 
         //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
+        $image = $request->file('image');
 
         //obtenemos el nombre del archivo
-        $nombrearchivo = $file->getClientOriginalName();
+        $nombrearchivo = $image->getClientOriginalName();
 
         //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('local')->put($nombrearchivo,  \File::get($file));
+        Storage::disk('local')->put($nombrearchivo,  \File::get($image));
 
         $public_path = storage_path();
         $url =$public_path.'/foro/storage/'.$nombrearchivo;
 
-        $newfile->imagen_nombre = $nombrearchivo;
-        $newfile->path = $url;
-        $newfile->response_id = $id;
-        $newfile->save();
+        $newimage->image_name = $nombrearchivo;
+        $newimage->path = $url;
+        $newimage->response_id = $id;
+        $newimage->save();
 
         DB::commit();
 
@@ -70,30 +70,30 @@ class File extends Model
                 ->with('warning','Something Went Wrong!');
         }
     }
-    public function storeDataTheme($request, $id){
+    public function storeImageTheme($request, $id){
 
         DB::beginTransaction();
         try{
             //save image
 
-        $newfile = new File();
+        $newimage = new Image();
 
         //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
+        $image = $request->file('image');
 
         //obtenemos el nombre del archivo
-        $nombrearchivo = $file->getClientOriginalName();
+        $nombrearchivo = $image->getClientOriginalName();
 
         //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('local')->put($nombrearchivo,  \File::get($file));
+        Storage::disk('local')->put($nombrearchivo,  \File::get($image));
 
         $public_path = storage_path();
         $url =$public_path.'/foro/storage/'.$nombrearchivo;
 
-        $newfile->imagen_nombre = $nombrearchivo;
-        $newfile->path = $url;
-        $newfile->theme_id = $id;
-        $newfile->save();
+        $newimage->image_name = $nombrearchivo;
+        $newimage->path = $url;
+        $newimage->theme_id = $id;
+        $newimage->save();
 
         DB::commit();
 

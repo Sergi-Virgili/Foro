@@ -25,9 +25,13 @@ class Theme extends Model implements Searchable
 
         return $this->belongsto(Area::class);
     }
-    public function file() {
+    public function files() {
 
         return $this->hasMany(File::class);
+    }
+    public function images() {
+
+        return $this->hasMany(Image::class);
     }
 
     public function getSearchResult(): SearchResult

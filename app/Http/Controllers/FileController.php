@@ -20,26 +20,6 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
-        
-        $newfile = new File();
-
-        //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
-
-        //obtenemos el nombre del archivo
-        $nombrearchivo = $file->getClientOriginalName();
-
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('local')->put($nombrearchivo,  \File::get($file));
-
-        $public_path = storage_path();
-        $url =$public_path.'/foro/storage/'.$nombrearchivo;
-
-        $newfile->imagen_nombre = $nombrearchivo;
-        $newfile->path = $url;
-        $newfile->response_id = $request->response_id;
-        $newfile->save();
-
         // return back();
     }
 
@@ -74,8 +54,23 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
+        $filePath = storage_path();
+        $fileUrl = $filePath.'/foro/storage/'.$file->imagen_nombre;
         $file->delete();
+        unlink($fileUrl);
         return back();
+    }
+
+    public function downloadFile ($file) {
+        $public_path = storage_path();
+        $url = $public_path.'/foro/storage/'.$file;
+        if (File::exists($file))
+        {
+            return response()->download($url);
+        }
+        //si no se encuentra lanzamos un error 404.
+        abort(404);
+     
     }
 }
 

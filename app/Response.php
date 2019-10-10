@@ -7,6 +7,7 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Theme;
 use App\File;
+use App\Image;
 
 class Response extends Model implements Searchable
 {
@@ -18,9 +19,13 @@ class Response extends Model implements Searchable
 
         return $this->belongsTo(Theme::class);
     }
-    public function file() {
+    public function files() {
 
         return $this->hasMany(File::class);
+    }
+    public function images() {
+
+            return $this->hasMany(Image::class);
     }
     public function user() {
         return $this->belongsTo(User::class);

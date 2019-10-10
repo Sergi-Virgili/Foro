@@ -13,6 +13,22 @@
 
     
     <p>{{$theme->content}}</p>
+    @foreach ($theme->images as $image)
+        <img src="{{url('/foro/storage',$image->image_name)}}">
+        <form action="/foro/image/{{$image->id}}" method="post">
+            @csrf
+            @method('DELETE') 
+            <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+        </form>
+    @endforeach
+    @foreach ($theme->files as $file)
+        <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+        <form action="/foro/file/{{$file->id}}" method="post">
+            @csrf
+            @method('DELETE') 
+            <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+        </form>
+    @endforeach
 
     @if (Auth::user())
 
@@ -43,17 +59,45 @@
             <div class="container">
             <a href="/foro/user/{{$response->user->id}}"><strong>{{$response->user->name}}</strong></a>
              <div id="response_content-{{$response->id}}">{{$response->content}}</div>
+             @foreach ($response->images as $image)
+                <img src="{{url('/foro/storage',$image->image_name)}}">
+                <form action="/foro/image/{{$image->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                    <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                </form>
+             @endforeach
+             @foreach ($response->files as $file)
+                <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+                <form action="/foro/file/{{$file->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                    <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
+                </form>
+             @endforeach
 
              @if (Auth::user())
                  
              <div id = "response_edit_form-{{$response->id}}" class="hidden">
-                    <form action="/foro/response/{{$response->id}}" method="post">
+                    <form action="/foro/response/{{$response->id}}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                         @csrf
                         @method('PUT') 
                         
                         <div class="form-group">
                             
                         <textarea class="form-control" required id="content" name="content" rows="3">{{$response->content}}</textarea>
+                        <div class="form-group">
+                            <label class="control-label">Nuevo Archivo</label>
+                            <div class="">
+                                <input type="file" class="form-control" name="file" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Nueva Imagen</label>
+                            <div class="">
+                                <input type="file" class="form-control" name="image" >
+                            </div>
+                        </div>
                         </div>
                         <a id="response_cancel_button-{{$response->id}}" onclick="toggleForm(['response_edit_form-{{$response->id}}',
                                 'response_content-{{$response->id}}',
@@ -64,21 +108,6 @@
                                 CANCELAR
                         </a>
                         <input type="submit" value="OK" class = "btn btn-outline-success mt-4">
-                    </form>
-                    <form method="POST" action="/foro/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    @csrf
-                        <div class="form-group">
-                            <label class="control-label">Nuevo Archivo</label>
-                            <div class="">
-                                <input type="file" class="form-control" name="file" >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="">
-                                <button type="submit" class="btn btn-primary">Enviar</button>
-                            </div>
-                        </div>
                     </form>
                 </div>
 

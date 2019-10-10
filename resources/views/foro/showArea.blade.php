@@ -10,25 +10,17 @@
         <strong>usuario</strong> <a href="/foro/user/{{$tema->user->id}}">{{$tema->user->name}}</a>
         <strong>area</strong> {{$tema->area->name}}
         <p>Respuestas: {{$tema->responses->Count()}}</p>
+        @foreach ($tema->files as $file)
+            <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+                <form action="/foro/file/{{$file->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                    <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
+                </form>
+        @endforeach
     </div>
     @if (Auth::user())
     <div class="container">
-        <form method="POST" action="/foro/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        @csrf
-        <div class="form-group">
-            <label class="col-md-4 control-label">Nuevo Archivo</label>
-            <div class="col-md-6">
-            <input type="file" class="form-control" name="file" >
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-            </div>
-        </div>
-        </form>
         <form action="/foro/tema/{{$tema->id}}" method="POST">
             @csrf
             @method('DELETE')

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Nuevo Hilo</h1>
-    <form action="/foro/temas" method="post">
+    <form action="/foro/temas" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
     {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Título del Hilo</label>
@@ -40,6 +40,18 @@
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
                         <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
                       </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Nuevo Archivo</label>
+            <div class="">
+                <input type="file" class="form-control" name="file" >
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Nueva Imagen</label>
+          <div class="">
+              <input type="file" class="form-control" name="image" >
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
     </form>

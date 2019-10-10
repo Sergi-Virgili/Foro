@@ -9,10 +9,6 @@ class ThemeObserver
     public function deleting(Theme $theme)
     {
         $theme->responses()->delete();
-    }
-
-    public function created(Theme $theme)
-    {
-        $theme->file();
+        $theme->files()->delete();
     }
 }
