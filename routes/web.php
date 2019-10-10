@@ -13,7 +13,7 @@
 
 
 //FORO AUTH ROUTES USERS
-
+use App\Http\Middleware\foroAdmin;
 Auth::routes();
 
 
@@ -40,12 +40,12 @@ Route::post('/foro/temas', 'ThemeController@store');
 //FORO AREAS ROUTES
 
 Route::get('/foro/{area}/temas', 'areaController@show')->name('area.show');
-Route::get('/foro', 'areaController@index');
+Route::get('/foro', 'areaController@index')->name('foro');
 Route::get('/foro/create', 'areaController@create');
-Route::post('/foro', 'areaController@store');
+Route::post('/foro', 'areaController@store')->middleware('auth','foroAdmin');
 Route::get('/foro/area/{area}/edit', 'areaController@edit');
-Route::put('/foro/area/{area}', 'areaController@update');
-Route::delete('/foro/{area}', 'areaController@destroy');
+Route::put('/foro/area/{area}', 'areaController@update')->middleware('auth','foroAdmin');
+Route::delete('/foro/{area}', 'areaController@destroy')->middleware('auth','foroAdmin');
 
 // RESPONSES ROUTES
 
@@ -67,8 +67,8 @@ Route::get('/foro/user/{user}', 'themeController@foroUser');
 
 
 // FORO ADMINISTRATION ROUTES
-Route::get('/foro/admin', 'ForoPermissionController@index');
+Route::get('/foro/admin', 'ForoPermissionController@index')->middleware('auth','foroAdmin');
 
-Route::delete('/foro/admin', 'ForoPermissionController@destroy');
+Route::delete('/foro/admin/{user}/delete', 'ForoPermissionController@destroy');
 
-Route::post('/foro/admin', 'ForoPermissionController@store');
+Route::post('/foro/admin', 'ForoPermissionController@addModerator');

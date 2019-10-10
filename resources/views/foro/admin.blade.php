@@ -8,16 +8,27 @@ Buscar Usuario <input type="text" id='userSearchInput' onkeyup="userSearch()">
 @foreach ($permissions as $permission)
 <h3>{{$permission->name}}</h3>
     @foreach ($permission->users as $user)
-    <li>{{$user->name}}</li> <a href="">xdel moderator</a>
+    <li>{{$user->name}}</li> 
+    <form method="post" action="/foro/admin/{{$user->id}}/delete">
+        @csrf
+        
+        @method('DELETE')
+        <input type="submit" value='Quitar Moderador'>
+    </form>
     @endforeach
 @endforeach
 <h3>Users</h3>
 @foreach ($users as $user)
-<li>
-    {{$user->name}}
-</li>
-<a href="">add Moderator</a>
-   
+@if(!App\ForoPermission::is_ForoAdmin($user))
+    <li class="card">
+        {{$user->name}}
+    </li>
+    <form action="/foro/admin" method="post">
+        {{ csrf_field() }}
+    <input type="hidden" name="user_id" value= {{$user->id}}>
+        <input type="submit" value="Hacer Moderador">
+    </form>
+@endif
 @endforeach
 
 {{-- @foreach ($permissions->users as $user)

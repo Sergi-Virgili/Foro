@@ -76,8 +76,10 @@
 
         <main class="py-4">
             <div class="container">
-            <form><input type="button" value="Return to previous page" onClick="javascript:history.go(-1)"></form>
+            <a href="#" onClick="javascript:history.go(-1)"> Previous </a>
+            @if (Auth::user())
             <a href="/foro/user/{{Auth::user()->id}}">Mis Hilos</a>
+            @endif
             <form action="/foro/finder" method="POST">
             {{ csrf_field() }}
                 @csrf

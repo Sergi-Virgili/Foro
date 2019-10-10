@@ -12,7 +12,7 @@ class ForoPermissionTable extends Seeder
     public function run()
     {
         DB::table('foro_permissions')->insert([
-            'name' => 'Edit',
+            'name' => 'Moderador',
         ]);
     }
 }

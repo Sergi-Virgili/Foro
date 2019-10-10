@@ -18,7 +18,7 @@
                 <div>{{$area->description}}</div>
                 
                 @if (Auth::user())
-                    
+                @if(App\ForoPermission::is_ForoAdmin(Auth::user()))
                 
                 <form method="GET" action="/foro/area/{{$area->id}}/edit">
                     @csrf
@@ -30,6 +30,7 @@
                     @method('delete')
                     <input type="submit" class="btn btn-outline-danger btn-sm " value="Delete">
                 </form>
+                @endif
                 @endif
                 </div>
             </div>
