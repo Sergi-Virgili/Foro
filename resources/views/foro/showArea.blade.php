@@ -19,27 +19,25 @@
                 </form>
         @endforeach
     </div>
-    @if (Auth::user())
+    @if (((Auth::user()) && (Auth::id() == $tema->user->id)) 
+    || ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user()))))
     <div class="container">
         <form action="/foro/tema/{{$tema->id}}" method="POST">
             @csrf
             @method('DELETE')
-            @if(Auth::id() == $tema->user_id)
             <input type="submit" class = "btn btn-outline-danger btn-sm" value="ELIMINAR">
         </form>
         <form action="/foro/tema/{{$tema->id}}/edit" method="GET">
-
-
             <input type="submit" class = "btn btn-outline-primary btn-sm" value="EDITAR">
-            @endif
         </form>
     </div>
     @endif
     </div>
 
     @endforeach
-    
+    @if (Auth::user())
     <a href="/foro/temas/crear">ABRE UN HILO NUEVO</a>
+    @endif
     
     
 

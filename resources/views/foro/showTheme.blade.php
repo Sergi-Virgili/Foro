@@ -3,9 +3,7 @@
 @section('content')
     <div class="card p-4 m-2">
     <h1>{{$theme->title}}</h1>
-    @if (Auth::user())
-        <a href="/foro/tema/{{$theme->id}}/edit">editar</a>
-    @endif
+    
     <h2>Area: {{$theme->area->name}}</h2>
     <p>Hilo abierto por: {{$theme->user->name}}</p>    
     <p>Creado el: {{$theme->created_at}} </p>
@@ -21,23 +19,37 @@
 
             return $text;
 }
-?>
+?>          
+            
     <?php echo findLinkInText($theme->content) ?>
-    @foreach ($theme->images as $image)
+    
+        @if (((Auth::user()) && (Auth::id() == $theme->user->id)) 
+        || ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user()))))
+             <a href="/foro/tema/{{$theme->id}}/edit">editar</a>
+            @endif
+    
+            @foreach ($theme->images as $image)
         <img src="{{url('/foro/storage',$image->image_name)}}">
+        @if (((Auth::user()) && (Auth::id() == $theme->user->id)) 
+        || ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user()))))
         <form action="/foro/image/{{$image->id}}" method="post">
             @csrf
             @method('DELETE') 
             <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
         </form>
+        @endif
     @endforeach
+
     @foreach ($theme->files as $file)
         <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+        @if (((Auth::user()) && (Auth::id() == $theme->user->id)) 
+        || ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user()))))
         <form action="/foro/file/{{$file->id}}" method="post">
             @csrf
             @method('DELETE') 
             <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
         </form>
+        @endif
     @endforeach
 
     @if (Auth::user())
@@ -81,8 +93,10 @@
              @foreach ($response->files as $file)
                 <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
             @endforeach
-             @if (Auth::user())
-             @if(Auth::id() == $response->user_id)
+
+            @if (((Auth::user()) && (Auth::id() == $response->user->id)) 
+            || ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user()))))
+
              <div id = "response_edit_form-{{$response->id}}" class="hidden">
                     <form action="/foro/response/{{$response->id}}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                         @csrf
@@ -142,7 +156,6 @@
                 class="btn btn-outline-success">
                 EDITAR
             </button>
-            @endif
             @endif
             </div>
         </div>

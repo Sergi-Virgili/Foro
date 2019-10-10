@@ -8,7 +8,6 @@
     <div class="areaTitle">Area51</div>
 <main>
     <form method="POST" action="/foro/area/{{$area->id}}"  role="form">
-        @csfr
         @method('put')
         {{ csrf_field() }}
         <label for="name">Name</label><br>

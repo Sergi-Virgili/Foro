@@ -17,8 +17,7 @@
                 <div class="container">
                 <div>{{$area->description}}</div>
                 
-                @if (Auth::user())
-                @if(App\ForoPermission::is_ForoAdmin(Auth::user()))
+                @if ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user())))
                 
                 <form method="GET" action="/foro/area/{{$area->id}}/edit">
                     @csrf
@@ -31,13 +30,12 @@
                     <input type="submit" class="btn btn-outline-danger btn-sm " value="Delete">
                 </form>
                 @endif
-                @endif
                 </div>
             </div>
         @endforeach
-    
-    <a role="btn" class="btn" href="/foro/create" value="new area">Crear</a>
-    
+        @if ((Auth::user()) && (App\ForoPermission::is_ForoAdmin(Auth::user())))
+            <a role="btn" class="btn" href="/foro/create" value="new area">Crear</a>
+        @endif
 </main>
 </body>
 </html>
