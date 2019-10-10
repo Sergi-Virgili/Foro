@@ -47,6 +47,12 @@
                     <input type="file" class="form-control" name="file" >
                 </div>
             </div>
+            <div class="form-group">
+                <label class="control-label">Nueva Imagen</label>
+                <div class="">
+                    <input type="file" class="form-control" name="image" >
+                </div>
+            </div>
             <input type="submit" class="btn btn-outline-success" value="Responder">
             <input type="hidden" name="theme_id" value= {{$theme->id}}>
         </form>
@@ -64,7 +70,7 @@
                 <form action="/foro/image/{{$image->id}}" method="post">
                     @csrf
                     @method('DELETE') 
-                    <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                    <input type="submit" value="ELIMINAR IMAGEN" class = "btn btn-outline-danger mt-4">
                 </form>
              @endforeach
              @foreach ($response->files as $file)
