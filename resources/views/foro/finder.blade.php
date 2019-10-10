@@ -1,4 +1,4 @@
-@extends('../layouts.app')
+@extends('../layouts.foro')
 @section('content')
 
 <div class="card">

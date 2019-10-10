@@ -1,4 +1,4 @@
-@extends('../layouts.app')
+@extends('../layouts.foro')
 
 @section('content')
     <h1>Estos son los temas del foro</h1>
