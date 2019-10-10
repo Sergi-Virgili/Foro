@@ -6,6 +6,8 @@ use App\Theme;
 use App\Area;
 use App\File;
 use App\Image;
+use App\Response;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 
