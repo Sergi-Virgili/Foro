@@ -87,11 +87,11 @@
             <div class="container">
             <a href="/foro/user/{{$response->user->id}}"><strong>{{$response->user->name}}</strong></a>
              <div id="response_content-{{$response->id}}"><?php echo findLinkInText($response->content)?></div>
-             @foreach ($response->images as $image)
-                <img src="{{url('/foro/storage',$image->image_name)}}">
-             @endforeach
-             @foreach ($response->files as $file)
+            @foreach ($response->files as $file)
                 <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+            @endforeach
+            @foreach ($response->images as $image)
+                <img src="{{url('/foro/storage',$image->image_name)}}">
             @endforeach
 
             @if (((Auth::user()) && (Auth::id() == $response->user->id)) 
@@ -129,6 +129,7 @@
                     @foreach ($response->files as $file)
                     <form action="/foro/file/{{$file->id}}" method="post">
                         @csrf
+                        {{ csrf_field() }}
                         @method('DELETE') 
                         <input type="submit" value="ELIMINAR ARCHIVO" class = "btn btn-outline-danger mt-4">
                     </form>
@@ -136,6 +137,7 @@
                     @foreach ($response->images as $image)                
                         <form action="/foro/image/{{$image->id}}" method="post">
                             @csrf
+                            {{ csrf_field() }}
                             @method('DELETE') 
                             <input type="submit" value="ELIMINAR IMAGEN" class = "btn btn-outline-danger mt-4">
                         </form>

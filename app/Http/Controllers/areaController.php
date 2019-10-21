@@ -53,11 +53,7 @@ class areaController extends Controller
     }
 
     public function update(Request $request, Area $area ){
-        // $request->validate(['name' => 'required', 'description' => 'required']);
-        // $area->name = $request->get('name');
-        // $area->description = $request->get('description');
-     //   $share = Share::find($id);
-    //   $share->save();
+
         $area->update($request->all());
         return redirect('/foro');
     }

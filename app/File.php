@@ -36,17 +36,13 @@ class File extends Model
 
         DB::beginTransaction();
         try{
-            //save image
 
         $newfile = new File();
 
-        //obtenemos el campo file definido en el formulario
         $file = $request->file('file');
 
-        //obtenemos el nombre del archivo
         $nombrearchivo = $file->getClientOriginalName();
 
-        //indicamos que queremos guardar un nuevo archivo en el disco local
         Storage::disk('local')->put($nombrearchivo,  \File::get($file));
 
         $public_path = storage_path();
@@ -63,18 +59,17 @@ class File extends Model
 
         }
 
-        catch(\Exception $e)
+        catch(\Exception $error)
         {
             DB::rollback();
             return redirect()->back()
-                ->with('warning','Something Went Wrong!');
+                ->with('warning', $error);
         }
     }
     public function storeDataTheme($request, $id){
 
         DB::beginTransaction();
         try{
-            //save image
 
         $newfile = new File();
 
