@@ -1,1 +1,1 @@
-#Simple Laravel Foro
+# Simple Laravel Foro
