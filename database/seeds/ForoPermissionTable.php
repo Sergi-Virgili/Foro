@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ThemeTable extends Seeder
+class ForoPermissionTable extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,8 @@ class ThemeTable extends Seeder
      */
     public function run()
     {
-        factory(App\Theme::class, 50)->create();
+        DB::table('foro_permissions')->insert([
+            'name' => 'Moderador',
+        ]);
     }
 }

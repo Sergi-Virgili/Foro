@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
+use App\Image;
 use App\Response;
 use Illuminate\Http\Request;
+use Auth;
 
 class ResponseController extends Controller
 {
@@ -12,6 +15,12 @@ class ResponseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+     
     public function index()
     {
         //
@@ -36,6 +45,21 @@ class ResponseController extends Controller
     public function store(Request $request)
     {
         //
+        //dd ($request);  
+        $response = new Response;
+        $response->user_id = Auth::user()->id;
+        $response->content = $request->content;
+        $response->theme_id = $request->theme_id;
+        $response->save();
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageResponse($request, $response->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataResponse($request, $response->id);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -69,7 +93,16 @@ class ResponseController extends Controller
      */
     public function update(Request $request, Response $response)
     {
-        //
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageResponse($request, $response->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataResponse($request, $response->id);
+        }
+        $response->update($request->all());
+        return redirect('/foro/tema/' . $response->theme->id);
     }
 
     /**
@@ -80,6 +113,7 @@ class ResponseController extends Controller
      */
     public function destroy(Response $response)
     {
-        //
+        $response->delete();
+        return redirect()->back();
     }
 }

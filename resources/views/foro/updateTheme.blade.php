@@ -1,10 +1,9 @@
-@extends('../layouts.app')
+@extends('../layouts.foro')
 
 @section('content')
-
+{{$theme->area->name}}
 <h1>Edit Hilo</h1>
-<form action="/foro/tema/{{$theme->id}}" method="post">
-      
+<form action="/foro/tema/{{$theme->id}}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
       @csrf
       @method('PUT')
     {{ csrf_field() }}
@@ -15,12 +14,15 @@
         <div class="form-group">
                 <label for="area">Selecciona Area</label>
         {{-- TODO: area seleccionada --}}
-        <select class="form-control" id="area_id" name="area_id" value="{{$theme->area}}">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+        <select class="form-control" id="area_id" name="area_id" value="{{$theme->area->id}}">
+                @foreach ($areas as $area)
+                        <option value="{{$area->id}}" 
+                                @if ($area->id == $theme->area->id) selected @endif>
+                                {{$area->name}}
+                        </option>
+                @endforeach
+                       
+                  
                 </select>
         </div>
         <div class="form-group">
@@ -42,7 +44,34 @@
                         <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
                       </div>
         </div>
-        
+        @foreach ($theme->files as $file)
+                <a href="{{url('/foro/storage',$file->imagen_nombre)}}">{{$file->imagen_nombre}}</a>
+                <form action="/foro/file/{{$file->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                </form>
+        @endforeach
+        @foreach ($theme->images as $image)
+                <img src="{{url('foro/storage',$image->image_name)}}">
+                <form action="/foro/image/{{$image->id}}" method="post">
+                    @csrf
+                    @method('DELETE') 
+                <input type="submit" value="ELIMINAR" class = "btn btn-outline-danger mt-4">
+                </form>
+        @endforeach
+        <div class="form-group">
+            <label class="col-md-4 control-label">Nuevo Archivo</label>
+            <div class="col-md-6">
+            <input type="file" class="form-control" name="file" >
+            </div>
+        </div>
+        <div class="form-group">
+                <label class="control-label">Nueva Imagen</label>
+                <div class="">
+                <input type="file" class="form-control" name="image" >
+                </div>
+        </div>
         <button type="submit" class="btn btn-primary">PUBLICAR</button>
     </form>
 

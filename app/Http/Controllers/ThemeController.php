@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Theme;
+use App\Area;
+use App\File;
+use App\Image;
 use App\Response;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -17,12 +21,13 @@ class ThemeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index', 'show');
     }
 
     public function index()
     {
         $temas = Theme::all();
+        
         return view('foro.listaTemas', ['temas'=>$temas]);
     }
 
@@ -33,8 +38,8 @@ class ThemeController extends Controller
      */
     public function create()
     {
-
-        return view('foro.newTheme');
+        $areas = Area::all();
+        return view('foro.newTheme', ['areas' => $areas]);
     }
 
     /**
@@ -50,10 +55,17 @@ class ThemeController extends Controller
         $theme->area_id = $request->area_id;
         $theme->content = $request->content;
         $theme->user_id = Auth::user()->id;
-
         $theme->save();
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageTheme($request, $theme->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataTheme($request, $theme->id);
+        }
 
-        return redirect('foro/temas');
+        return redirect('foro/'.$theme->area_id.'/temas');
     }
 
     /**
@@ -65,7 +77,7 @@ class ThemeController extends Controller
     public function show(Theme $theme)
     {
         $responses = $theme->responses();
-        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses]);
+        return view('foro.showTheme',['theme' => $theme, 'responses' => $responses ]);
 
     }
 
@@ -77,7 +89,9 @@ class ThemeController extends Controller
      */
     public function edit(Theme $theme)
     {
-        return view('foro.updateTheme', compact('theme', $theme));
+        $areas = Area::all();
+        return view('foro.updateTheme', ['theme' => $theme,
+                                        'areas' => $areas]);
     }
 
     /**
@@ -89,8 +103,17 @@ class ThemeController extends Controller
      */
     public function update(Request $request, Theme $theme)
     {
+        if($request->image){
+        $newimage = new Image();
+        $newimage->storeImageTheme($request, $theme->id);
+        }
+        if($request->file){
+        $newfile = new File();
+        $newfile->storeDataTheme($request, $theme->id);
+        }
         $theme->update($request->all());
-        return redirect('/foro/temas');
+        
+        return redirect('/foro/'.$theme->area_id.'/temas');
     }
 
     /**
@@ -102,6 +125,19 @@ class ThemeController extends Controller
     public function destroy(Theme $theme)
     {
         $theme->delete();
-        return redirect('foro/temas');
+        return redirect('/foro/'.$theme->area_id.'/temas');
+
+    }
+
+    public function foroUser (User $user) {
+
+        $responses = Response::getFromUser($user);
+        $themes = Theme::getFromUser($user);
+        //$themes = Theme::where('user_id' , $user->id)->get();
+        return view('foro.foroUser', ['themes' => $themes,
+                                    'user' => $user,
+                                    'responses' => $responses]);
+        
     }
 }
+
